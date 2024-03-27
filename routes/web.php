@@ -1,34 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AboutController;
 
-Route::get('/', function () {
-    return view('home', [
-        'title' => 'Home'
-    ]);
-});
+// Home
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/about', function () {
-    return view('about',  [
-        'title' => 'About',
-        'name'  => 'Taufiq Pop',
-        'email' => 'taufiqpop999@gmail.com',
-        'image' => 'Pop.jpg',
-    ]);
-});
+// About
+Route::get('/about', [AboutController::class, 'index']);
 
-Route::get('/blog', function () {
-    return view('blog', [
-        'title' => 'Blog',
-        'posts' => Blog::all(),
-    ]);
-});
-
-// Halaman Single Posts Blog
-Route::get('blog/{slug}', function ($slug) {
-    return view('post', [
-        'title' => 'Single Post',
-        'post'  => Blog::find($slug),
-    ]);
-});
+// Blog
+Route::get('/blog', [BlogController::class, 'index']);
+Route::get('blog/{slug}', [BlogController::class, 'show']);

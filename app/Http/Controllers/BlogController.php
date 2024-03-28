@@ -17,11 +17,11 @@ class BlogController extends Controller
 
         return view('blog', $data);
     }
-    public function show($slug)
+    public function show(Blog $post)
     {
         $data = [
             'title' => 'Single Post',
-            'post'  => Blog::find($slug),
+            'post'  => $post,
         ];
 
         return view('post', $data);

@@ -17,6 +17,7 @@ class BlogController extends Controller
 
         return view('blog', $data);
     }
+
     public function show(Blog $post)
     {
         $data = [

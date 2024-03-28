@@ -17,4 +17,5 @@ Route::get('/blog', [BlogController::class, 'index']);
 Route::get('/blog/{post:slug}', [BlogController::class, 'show']);
 
 // Category
+Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);

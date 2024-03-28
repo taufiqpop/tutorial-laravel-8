@@ -8,6 +8,16 @@ use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
+    public function index()
+    {
+        $data = [
+            'title' => 'Post Categories',
+            'categories' => Category::all(),
+        ];
+
+        return view('categories', $data);
+    }
+
     public function show(Category $category)
     {
         $data = [

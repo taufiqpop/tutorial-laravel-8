@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         $data = [
             'title' => $category->name,
-            'posts' => $category->posts,
+            'posts' => $category->blog,
             'category' => $category->name,
         ];
 

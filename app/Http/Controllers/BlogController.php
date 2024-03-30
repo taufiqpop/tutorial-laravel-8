@@ -12,8 +12,8 @@ class BlogController extends Controller
     {
         $data = [
             'title' => 'All Posts',
-            // 'posts' => Blog::all(),
-            'posts' => Blog::with(['author', 'category'])->latest()->get(),
+            'active' => 'posts',
+            'posts' => Blog::latest()->get(),
         ];
 
         return view('blog', $data);
@@ -23,6 +23,7 @@ class BlogController extends Controller
     {
         $data = [
             'title' => 'Single Post',
+            'active' => 'posts',
             'post'  => $post,
         ];
 

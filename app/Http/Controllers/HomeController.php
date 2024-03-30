@@ -10,6 +10,7 @@ class HomeController extends Controller
     {
         $data = [
             'title' => 'Home',
+            'active' => 'home',
         ];
 
         return view('home', $data);

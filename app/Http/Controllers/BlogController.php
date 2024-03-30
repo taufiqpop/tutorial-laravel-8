@@ -11,9 +11,9 @@ class BlogController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Blog',
+            'title' => 'All Posts',
             // 'posts' => Blog::all(),
-            'posts' => Blog::latest()->get(),
+            'posts' => Blog::with(['author', 'category'])->latest()->get(),
         ];
 
         return view('blog', $data);

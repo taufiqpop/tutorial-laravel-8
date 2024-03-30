@@ -7,7 +7,6 @@
             <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a>
         </p>
 
-        <h5>{{ $post->author }}</h5>
         {!! $post->body !!}
     </article>
 

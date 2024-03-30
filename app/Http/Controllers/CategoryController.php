@@ -22,19 +22,18 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $data = [
-            'title' => $category->name,
-            'posts' => $category->blog,
-            'category' => $category->name,
+            'title' => 'Post By Category : ' . $category->name,
+            'posts' => $category->blog->load('category', 'author'),
         ];
 
-        return view('category', $data);
+        return view('blog', $data);
     }
 
     public function author(User $author)
     {
         $data = [
-            'title' => 'User Posts',
-            'posts' => $author->blog,
+            'title' => 'Post By Author : ' . $author->name,
+            'posts' => $author->blog->load('category', 'author'),
         ];
 
         return view('blog', $data);

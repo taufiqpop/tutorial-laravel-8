@@ -35,6 +35,7 @@ class CategoryController extends Controller
     {
         $data = [
             'title' => $author->name,
+            'active' => 'posts',
             'posts' => $author->blog->load('category', 'author'),
         ];
 

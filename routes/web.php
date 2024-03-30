@@ -5,6 +5,8 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 // Home
 Route::get('/', [HomeController::class, 'index']);
@@ -18,7 +20,7 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'show']);
 
 // Category
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
 
-// Author
-Route::get('/author/{author:username}', [CategoryController::class, 'author']);
+// Login
+Route::get('/login', [LoginController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index']);

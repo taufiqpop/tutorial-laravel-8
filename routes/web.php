@@ -19,3 +19,6 @@ Route::get('/blog/{post:slug}', [BlogController::class, 'show']);
 // Category
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::get('/categories/{category:slug}', [CategoryController::class, 'show']);
+
+// Author
+Route::get('/author/{author:username}', [CategoryController::class, 'author']);

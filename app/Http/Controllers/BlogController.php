@@ -12,7 +12,8 @@ class BlogController extends Controller
     {
         $data = [
             'title' => 'Blog',
-            'posts' => Blog::all(),
+            // 'posts' => Blog::all(),
+            'posts' => Blog::latest()->get(),
         ];
 
         return view('blog', $data);

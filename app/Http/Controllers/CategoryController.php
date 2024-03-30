@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 
@@ -27,5 +28,15 @@ class CategoryController extends Controller
         ];
 
         return view('category', $data);
+    }
+
+    public function author(User $author)
+    {
+        $data = [
+            'title' => 'User Posts',
+            'posts' => $author->blog,
+        ];
+
+        return view('blog', $data);
     }
 }

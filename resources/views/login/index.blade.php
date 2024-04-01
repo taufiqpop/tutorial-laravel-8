@@ -9,15 +9,29 @@
                 </div>
             @endif
 
+            @if (session()->has('loginError'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('loginError') }}
+                </div>
+            @endif
+
             <main class="form-signin w-100 m-auto">
                 <h1 class="h3 mb-3 fw-normal">Welcome Back!</h1>
-                <form>
+                <form action="/login" method="post">
+                    @csrf
                     <div class="form-floating">
-                        <input type="email" class="form-control" name="email" placeholder="Email" autofocus>
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
+                            placeholder="Email" value="{{ old('email') }}" required autofocus>
                         <label for="email">Email address</label>
+                        @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control rounded-bottom" placeholder="Password" name="password">
+                        <input type="password" class="form-control rounded-bottom" placeholder="Password" name="password"
+                            required>
                         <label for="password">Password</label>
                     </div>
                     <button class="btn btn-primary w-100 py-2" type="submit">Login</button>

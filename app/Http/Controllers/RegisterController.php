@@ -12,7 +12,6 @@ class RegisterController extends Controller
     {
         $data = [
             'title' => 'Register Page',
-            'active' => 'register',
         ];
 
         return view('register.index', $data);

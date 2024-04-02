@@ -13,7 +13,6 @@ class CategoryController extends Controller
     {
         $data = [
             'title' => 'Post Categories',
-            'active' => 'categories',
             'categories' => Category::all(),
         ];
 
@@ -24,7 +23,6 @@ class CategoryController extends Controller
     {
         $data = [
             'title' => $category->name,
-            'active' => 'categories',
             'posts' => $category->blog->load('category', 'author'),
         ];
 
@@ -35,7 +33,6 @@ class CategoryController extends Controller
     {
         $data = [
             'title' => $author->name,
-            'active' => 'posts',
             'posts' => $author->blog->load('category', 'author'),
         ];
 

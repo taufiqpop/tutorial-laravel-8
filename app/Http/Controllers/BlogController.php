@@ -26,7 +26,6 @@ class BlogController extends Controller
 
         $data = [
             'title'  => 'All Posts' . $title,
-            'active' => 'posts',
             'posts'  => Blog::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString(),
         ];
 
@@ -37,7 +36,6 @@ class BlogController extends Controller
     {
         $data = [
             'title'  => 'Single Post',
-            'active' => 'posts',
             'post'   => $post,
         ];
 

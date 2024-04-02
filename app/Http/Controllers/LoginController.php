@@ -11,7 +11,6 @@ class LoginController extends Controller
     {
         $data = [
             'title' => 'Login Page',
-            'active' => 'login',
         ];
 
         return view('login.index', $data);

@@ -10,7 +10,6 @@ class AboutController extends Controller
     {
         $data = [
             'title' => 'About',
-            'active' => 'about',
             'name'  => 'Taufiq Pop',
             'email' => 'taufiqpop999@gmail.com',
             'image' => 'Pop.jpg',

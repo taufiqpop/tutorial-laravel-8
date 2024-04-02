@@ -41,8 +41,9 @@
             </div>
             <div class="mb-3">
                 <label for="image" class="form-label">Post Images</label>
+                <img class="img-preview img-fluid mb-3 col-sm-5">
                 <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
-                    id="image">
+                    id="image" onchange="previewImage()">
                 @error('image')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -61,19 +62,4 @@
             <button type="submit" class="btn btn-primary mb-3">Publish</button>
         </form>
     </div>
-
-    <script>
-        const title = document.querySelector('#title');
-        const slug = document.querySelector('#slug');
-
-        title.addEventListener('change', function() {
-            fetch('/dashboard/posts/checkSlug?title=' + title.value)
-                .then(response => response.json())
-                .then(data => slug.value = data.slug)
-        });
-
-        // document.addEventListener('trix-file-accept', function(e) {
-        //     e.preventDefault();
-        // });
-    </script>
 @endsection

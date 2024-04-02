@@ -70,25 +70,48 @@ class DashboardPostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Blog $post)
     {
-        //
+        $data = [
+            'post' => $post,
+            'categories' => Category::all(),
+        ];
+
+        return view('dashboard.posts.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Blog $post)
     {
-        //
+        $data = [
+            'title' => 'required|max:255',
+            'category_id' => 'required',
+            'body' => 'required',
+        ];
+
+        if ($request->slug != $post->slug) {
+            $data['slug'] = 'required|unique:blogs';
+        }
+
+        $validatedData = $request->validate($data);
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 200));
+
+        Blog::where('id', $post->id)->update($validatedData);
+
+        return redirect('/dashboard/posts')->with('success', 'Post Has Been Updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Blog $post)
     {
-        //
+        Blog::destroy($post->id);
+
+        return redirect('/dashboard/posts')->with('success', 'Post Has Been Deleted!');
     }
 
     public function checkSlug(Request $request)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Blog;
 use App\Models\Category;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
@@ -38,7 +39,20 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $data = [
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:blogs',
+            'category_id' => 'required',
+            'body' => 'required',
+        ];
+
+        $validatedData = $request->validate($data);
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body, 200));
+
+        Blog::create($validatedData);
+
+        return redirect('/dashboard/posts')->with('success', 'New Post Has Been Added!');
     }
 
     /**

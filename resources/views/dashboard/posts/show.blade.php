@@ -13,8 +13,6 @@
                 <article class="my-3">
                     {!! $post->body !!}
                 </article>
-
-                <a href="/blog" class="d-block mt-3 text-decoration-none">Back To Blog</a>
             </div>
         </div>
     </div>

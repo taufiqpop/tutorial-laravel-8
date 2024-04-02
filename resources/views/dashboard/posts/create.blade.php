@@ -9,26 +9,40 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
-                <input type="text" class="form-control" id="title" name="title" required autofocus>
+                <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+                    value="{{ old('title') }}" autofocus>
+                @error('title')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label class="form-label" for="slug">Slug</label>
-                <input type="text" class="form-control" id="slug" name="slug" required disabled readonly>
+                <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug') }}"
+                    required>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="category">Category</label>
                 <select class="form-select" name="category_id" id="category">
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @if (old('category_id') == $category->id)
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                        @else
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label" for="body">Body</label>
-                <input id="body" type="hidden" name="body">
+                @error('body')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
+                <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-primary">Publish</button>
+            <button type="submit" class="btn btn-primary mb-3">Publish</button>
         </form>
     </div>
 

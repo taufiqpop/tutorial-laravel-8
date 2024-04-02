@@ -5,10 +5,11 @@
     </div>
 
     <div class="table-responsive col-lg-8">
+        <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Add Posts</a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
-                    <th scope="col">No</th>
+                    <th scope="col">#</th>
                     <th scope="col">Title</th>
                     <th scope="col">Category</th>
                     <th scope="col">Action</th>
@@ -21,10 +22,12 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>
-                            <a href="/dashboard/posts/{{ $post->slug }}" class="badge bg-info"><span
+                            <a href="/dashboard/posts/show/{{ $post->slug }}" class="badge bg-info"><span
                                     data-feather="eye"></span></a>
-                            <a href="" class="badge bg-warning"><span data-feather="edit"></span></a>
-                            <a href="" class="badge bg-danger"><span data-feather="x-circle"></span></a>
+                            <a href="/dashboard/posts/edit/{{ $post->slug }}" class="badge bg-warning"><span
+                                    data-feather="edit"></span></a>
+                            <a href="/dashboard/posts/delete/{{ $post->slug }}" class="badge bg-danger"><span
+                                    data-feather="x-circle"></span></a>
                         </td>
                     </tr>
                 @endforeach

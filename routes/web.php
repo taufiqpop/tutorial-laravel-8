@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 // Home
 Route::get('/', [HomeController::class, 'index']);
@@ -47,3 +47,19 @@ Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'check
 Route::get('/dashboard/posts/{post:slug}/edit', [DashboardPostController::class, 'edit'])->middleware('auth');
 Route::put('/dashboard/posts/{post:slug}', [DashboardPostController::class, 'update'])->middleware('auth');
 Route::delete('/dashboard/posts/delete/{post:slug}', [DashboardPostController::class, 'destroy'])->middleware('auth');
+
+// Category (CRUD) --Middleware
+// Route::get('/dashboard/category', [AdminCategoryController::class, 'index'])->middleware('admin');
+// Route::get('/dashboard/category/create', [AdminCategoryController::class, 'create'])->middleware('admin');
+// Route::post('/dashboard/category/store', [AdminCategoryController::class, 'store'])->middleware('admin');
+// Route::get('/dashboard/category/{category}/edit', [AdminCategoryController::class, 'edit'])->middleware('admin');
+// Route::put('/dashboard/category/{category}', [AdminCategoryController::class, 'update'])->middleware('admin');
+// Route::delete('/dashboard/category/delete/{category}', [AdminCategoryController::class, 'destroy'])->middleware('admin');
+
+// Category (CRUD) --Gate
+Route::get('/dashboard/category', [AdminCategoryController::class, 'index'])->middleware('admin');
+Route::get('/dashboard/category/create', [AdminCategoryController::class, 'create'])->middleware('admin');
+Route::post('/dashboard/category/store', [AdminCategoryController::class, 'store'])->middleware('admin');
+Route::get('/dashboard/category/{category}/edit', [AdminCategoryController::class, 'edit'])->middleware('admin');
+Route::put('/dashboard/category/{category}', [AdminCategoryController::class, 'update'])->middleware('admin');
+Route::delete('/dashboard/category/delete/{category}', [AdminCategoryController::class, 'destroy'])->middleware('admin');
